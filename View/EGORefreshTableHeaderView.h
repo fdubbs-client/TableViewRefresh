@@ -45,6 +45,7 @@ typedef enum{
 	CALayer *_arrowImage;
 	UIActivityIndicatorView *_activityView;
 	
+    BOOL isInitializing;
 
 }
 

@@ -89,7 +89,7 @@
 		
 		
 		[self setState:EGOOPullRefreshNormal];
-		
+		isInitializing = NO;
     }
 	
     return self;
@@ -103,7 +103,7 @@
 - (void)showLoadingOnFirstRefresh
 {
     if (self != nil) {
-        [self setState:EGOOPullRefreshInitializing];
+        isInitializing = YES;
     }
 }
 
@@ -199,7 +199,7 @@
 
 - (void)egoRefreshScrollViewDidScroll:(UIScrollView *)scrollView {	
 	
-	if (_state == EGOOPullRefreshLoading) {
+	if (_state == EGOOPullRefreshLoading || _state == EGOOPullRefreshInitializing) {
 		
 		CGFloat offset = MAX(scrollView.contentOffset.y * -1, 0);
 		offset = MIN(offset, 60);
@@ -239,7 +239,12 @@
 			[_delegate egoRefreshTableHeaderDidTriggerRefresh:self];
 		}
 		
-		[self setState:EGOOPullRefreshLoading];
+        if (isInitializing) {
+            [self setState:EGOOPullRefreshInitializing];
+        } else {
+            [self setState:EGOOPullRefreshLoading];
+        }
+		
 		[UIView beginAnimations:nil context:NULL];
 		[UIView setAnimationDuration:0.2];
 		scrollView.contentInset = UIEdgeInsetsMake(60.0f, 0.0f, 0.0f, 0.0f);
