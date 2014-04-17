@@ -103,7 +103,7 @@
 - (void)showLoadingOnFirstRefresh
 {
     if (self != nil) {
-        [self setState:EGOOPullRefreshLoading];
+        [self setState:EGOOPullRefreshInitializing];
     }
 }
 
@@ -172,6 +172,16 @@
 			[_activityView startAnimating];
 			[CATransaction begin];
 			[CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions]; 
+			_arrowImage.hidden = YES;
+			[CATransaction commit];
+			
+			break;
+        case EGOOPullRefreshInitializing:
+			
+			_statusLabel.text = NSLocalizedString(@"Initializing...", @"Initializing Status");
+			[_activityView startAnimating];
+			[CATransaction begin];
+			[CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
 			_arrowImage.hidden = YES;
 			[CATransaction commit];
 			

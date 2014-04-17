@@ -30,7 +30,8 @@
 typedef enum{
 	EGOOPullRefreshPulling = 0,
 	EGOOPullRefreshNormal,
-	EGOOPullRefreshLoading,	
+	EGOOPullRefreshLoading,
+	EGOOPullRefreshInitializing,
 } EGOPullRefreshState;
 
 @protocol EGORefreshTableHeaderDelegate;
