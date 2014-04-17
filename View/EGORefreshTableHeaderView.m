@@ -100,6 +100,13 @@
   return [self initWithFrame:frame arrowImageName:@"blueArrow.png" textColor:TEXT_COLOR];
 }
 
+- (void)showLoadingOnFirstRefresh
+{
+    if (self != nil) {
+        [self setState:EGOOPullRefreshLoading];
+    }
+}
+
 #pragma mark -
 #pragma mark Setters
 
