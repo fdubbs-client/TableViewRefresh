@@ -241,6 +241,7 @@
 		
         if (isInitializing) {
             [self setState:EGOOPullRefreshInitializing];
+            isInitializing = NO;
         } else {
             [self setState:EGOOPullRefreshLoading];
         }
